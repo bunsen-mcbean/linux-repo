@@ -12,7 +12,13 @@ install:
 
 build_script:
   - export R_VERSION=`flatpak run org.jamovi.jamovi --r-version`
-  - flatpak run org.jamovi.jamovi -R -e "install.packages(repos='$CRAN_MIRROR', keep_outputs=TRUE, pkgs=readLines('packages.txt'))"
+  - mkdir -p libs
+  - flatpak run org.jamovi.jamovi -R -e "
+      install.packages(
+        repos='$CRAN_MIRROR',
+        keep_outputs=TRUE,
+        libs='libs'
+        pkgs=readLines('packages.txt'))"
   - ls
 
 cache:
