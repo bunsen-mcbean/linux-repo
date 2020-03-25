@@ -14,7 +14,7 @@ install:
 
 build_script:
   - export R_VERSION=`flatpak run org.jamovi.jamovi --r-version`
-#   - mkdir -p installed
+  - mkdir -p lib
 #   - mkdir -p downloads
 #   - flatpak run --devel org.jamovi.jamovi -R -e "
 #       install.packages(
@@ -24,7 +24,7 @@ build_script:
 #         destdir='downloads',
 #         pkgs=readLines('packages.txt'))"
   - python3 download.py --packages ggplot2 jsonlite
-  - flatpak run --devel org.jamovi.jamovi -R CMD INSTALL --build *.tar.gz
+  - flatpak run --devel org.jamovi.jamovi -R CMD INSTALL --build *.tar.gz --library=lib
   - ls
 
 cache:
