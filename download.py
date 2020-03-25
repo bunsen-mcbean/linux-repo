@@ -134,7 +134,7 @@ def main():
     for name in packages:
         url = get_cran_url(name)
         filename = os.path.basename(url)
-        local_path = '{n:03}_{name}.tar.gz'.format(name=filename, n=pkg_no)
+        local_path = '{n:03}_{filename}'.format(filename=filename, n=pkg_no)
 
         print('Downloading', name)
         with urllib.request.urlopen(url) as response:
