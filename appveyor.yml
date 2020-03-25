@@ -7,21 +7,24 @@ environment:
 install:
   - sudo add-apt-repository ppa:alexlarsson/flatpak
   - sudo apt update
-  - sudo apt install -y flatpak
+  - sudo apt install -y flatpak python3.7 python3-pip
+  
   - bash install-flatpak.sh
+  - python3.7 -m pip install -r requirements.txt
 
 build_script:
   - export R_VERSION=`flatpak run org.jamovi.jamovi --r-version`
-  - mkdir -p installed
-  - mkdir -p downloads
-  - flatpak run --devel org.jamovi.jamovi -R -e "
-      install.packages(
-        repos='$CRAN_MIRROR',
-        keep_outputs=TRUE,
-        lib='installed',
-        destdir='downloads',
-        pkgs=readLines('packages.txt'))"
-  - ls downloads
+#   - mkdir -p installed
+#   - mkdir -p downloads
+#   - flatpak run --devel org.jamovi.jamovi -R -e "
+#       install.packages(
+#         repos='$CRAN_MIRROR',
+#         keep_outputs=TRUE,
+#         lib='installed',
+#         destdir='downloads',
+#         pkgs=readLines('packages.txt'))"
+  - python3 download.py --packages ggplot2 jsonlite
+  - ls
 
 cache:
   - /home/appveyor/.local/share/flatpak/app/org.jamovi.jamovi -> install-flatpak.sh
