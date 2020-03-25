@@ -142,7 +142,6 @@ def main():
             with open(local_path, 'wb') as output:
                 output.write(body)
 
-        sha = get_file_hash(local_path)
         dir_name = '{n:03}_{name}.Rpkg'.format(name=name, n=pkg_no)
 
         pkg_no += 1
