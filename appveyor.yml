@@ -32,3 +32,7 @@ build_script:
 
 cache:
   - /home/appveyor/.local/share/flatpak/app/org.jamovi.jamovi -> install-flatpak.sh
+
+artifacts:
+  - name: repo
+    path: 'repo/**/*'
