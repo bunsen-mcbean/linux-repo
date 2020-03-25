@@ -12,14 +12,16 @@ install:
 
 build_script:
   - export R_VERSION=`flatpak run org.jamovi.jamovi --r-version`
-  - mkdir -p lib
+  - mkdir -p installed
+  - mkdir -p downloads
   - flatpak run --devel org.jamovi.jamovi -R -e "
       install.packages(
         repos='$CRAN_MIRROR',
         keep_outputs=TRUE,
-        lib='lib',
+        lib='installed',
+        destdir='downloads',
         pkgs=readLines('packages.txt'))"
-  - ls
+  - ls downloads
 
 cache:
   - /home/appveyor/.local/share/flatpak/app/org.jamovi.jamovi -> install-flatpak.sh
