@@ -17,7 +17,7 @@ build_script:
       install.packages(
         repos='$CRAN_MIRROR',
         keep_outputs=TRUE,
-        libs='libs'
+        libs='libs',
         pkgs=readLines('packages.txt'))"
   - ls
 
