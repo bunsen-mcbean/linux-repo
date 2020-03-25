@@ -8,6 +8,7 @@ install:
   - sudo add-apt-repository ppa:alexlarsson/flatpak
   - sudo apt update
   - sudo apt install -y flatpak
+  - bash install-flatpak.sh
 
 build_script:
   - export R_VERSION=`flatpak run org.jamovi.jamovi --r-version`
