@@ -16,6 +16,7 @@ install:
 build_script:
   - export R_VERSION=`flatpak run org.jamovi.jamovi --r-version`
   - mkdir -p libs
+  - mkdir -p repo
 #   - mkdir -p downloads
 #   - flatpak run --devel org.jamovi.jamovi -R -e "
 #       install.packages(
@@ -26,7 +27,7 @@ build_script:
 #         pkgs=readLines('packages.txt'))"
   - python3 download.py --packages drat ggplot2 jsonlite
   - flatpak run --devel org.jamovi.jamovi -R CMD INSTALL --build *.tar.gz --library=libs
-  - flatpak run --devel org.jamovi.jamovi -R -e "lapply(list.files(pattern='R_x86_64-pc-linux-gnu\\\\.tar\\\\.gz$'), drat::insertPackage)"
+  - flatpak run --devel org.jamovi.jamovi -R -e "options(dratRepo='$APPVEYOR_BUILD_FOLDER/repo'); lapply(list.files(pattern='R_x86_64-pc-linux-gnu\\\\.tar\\\\.gz$'), drat::insertPackage)"
   - ls
 
 cache:
