@@ -134,15 +134,13 @@ def main():
     for name in packages:
         url = get_cran_url(name)
         filename = os.path.basename(url)
-        local_path = filename
+        local_path = '{n:03}_{name}.tar.gz'.format(name=filename, n=pkg_no)
 
         print('Downloading', name)
         with urllib.request.urlopen(url) as response:
             body = response.read()
             with open(local_path, 'wb') as output:
                 output.write(body)
-
-        dir_name = '{n:03}_{name}.Rpkg'.format(name=name, n=pkg_no)
 
         pkg_no += 1
 
