@@ -24,6 +24,7 @@ build_script:
 #         destdir='downloads',
 #         pkgs=readLines('packages.txt'))"
   - python3 download.py --packages ggplot2 jsonlite
+  - flatpak run --devel org.jamovi.jamovi -R CMD build --binary *.tar.gz
   - ls
 
 cache:
