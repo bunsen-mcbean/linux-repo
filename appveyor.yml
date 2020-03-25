@@ -3,6 +3,7 @@ image: Ubuntu
 
 environment:
     CRAN_MIRROR: https://cran.microsoft.com/snapshot/2020-01-01
+    R_LIBS_USER: libs
 
 install:
   - sudo add-apt-repository ppa:alexlarsson/flatpak
@@ -14,7 +15,7 @@ install:
 
 build_script:
   - export R_VERSION=`flatpak run org.jamovi.jamovi --r-version`
-  - mkdir -p lib
+  - mkdir -p libs
 #   - mkdir -p downloads
 #   - flatpak run --devel org.jamovi.jamovi -R -e "
 #       install.packages(
@@ -23,8 +24,9 @@ build_script:
 #         lib='installed',
 #         destdir='downloads',
 #         pkgs=readLines('packages.txt'))"
-  - python3 download.py --packages ggplot2 jsonlite
-  - flatpak run --devel org.jamovi.jamovi -R CMD INSTALL --build *.tar.gz --library=lib
+  - python3 download.py --packages drat ggplot2 jsonlite
+  - flatpak run --devel org.jamovi.jamovi -R CMD INSTALL --build *.tar.gz --library=libs
+  - flatpak run --devel org.jamovi.jamovi -R -e "lapply(list.files(pattern='R_x86_64-pc-linux-gnu\\.tar\\.gz$'), drat::insertPackage)"
   - ls
 
 cache:
