@@ -3,7 +3,7 @@ dist: bionic
 
 env:
     MRAN_SNAPSHOT: 2020-01-01
-    CRAN_MIRROR: https://cran.microsoft.com/snapshot/$MRAN_SNAPSHOT
+    CRAN_MIRROR: 'https://cran.microsoft.com/snapshot/$MRAN_SNAPSHOT'
     R_LIBS_USER: libs
 
 install:
