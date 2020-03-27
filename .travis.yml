@@ -19,6 +19,6 @@ script:
   - mkdir -p $MRAN_SNAPSHOT
   - python3 download.py --packages drat ggplot2 jsonlite
   - flatpak run --devel org.jamovi.jamovi -R CMD INSTALL --build *.tar.gz --library=$R_LIBS_USER
-  - flatpak run --devel org.jamovi.jamovi -R -e "options(dratRepo='$MRAN_SNAPSHOT'); lapply(list.files(pattern='R_x86_64-pc-linux-gnu\\\\.tar\\\\.gz$'), drat::insertPackage); invisible(NULL)"
+  - flatpak run --devel org.jamovi.jamovi -R -e ".libPaths('$R_LIBS_USER'); print(.libPaths()); options(dratRepo='$MRAN_SNAPSHOT'); lapply(list.files(pattern='R_x86_64-pc-linux-gnu\\\\.tar\\\\.gz$'), drat::insertPackage); invisible(NULL)"
   - ls $MRAN_SNAPSHOT
   
