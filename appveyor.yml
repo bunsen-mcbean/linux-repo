@@ -28,6 +28,8 @@ build_script:
   - ls $SNAPSHOT
 
 after_build:
+  - mkdir -p ~/.ssh
+  - chmod 0600 ~/.ssh
   - echo "${SFTP_KEY}" | base64 --decode >~/.ssh/id_rsa
   - chmod 0600 ~/.ssh/id_rsa
   # - echo "${SFTP_KNOWN_HOST}" | base64 --decode >>~/.ssh/known_hosts
