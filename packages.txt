@@ -1,6 +1,5 @@
 BiasedUrn
 DiagrammeR
-DiagrammeRsvg
 FFTrees
 MASS
 R6
