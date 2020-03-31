@@ -19,6 +19,7 @@ install:
   - sudo apt install -y flatpak python3.7 python3-pip
   
   - bash install-flatpak.sh
+  - export APPVEYOR_SAVE_CACHE_ON_ERROR=true
   - python3 -m pip install -r requirements.txt
 
 build_script:
@@ -28,7 +29,6 @@ build_script:
   - python3 download.py --packages drat `sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g' packages.txt`
   - flatpak run --devel org.jamovi.jamovi -R CMD INSTALL --build *.tar.gz --library=$R_LIBS_USER
   - flatpak run --devel org.jamovi.jamovi -R -e "options(dratRepo='$APPVEYOR_BUILD_FOLDER/$SNAPSHOT'); lapply(list.files(pattern='R_x86_64-pc-linux-gnu\\\\.tar\\\\.gz$'), drat::insertPackage); invisible(NULL)"
-  - ls $SNAPSHOT
 
 after_build:
   - mkdir -p ~/.ssh
