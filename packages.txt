@@ -40,7 +40,6 @@ networkD3
 nnet
 png
 purrr
-report
 rlang
 scales
 survival
