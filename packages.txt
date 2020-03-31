@@ -6,7 +6,6 @@ MASS
 R6
 car
 caret
-correlation
 cowplot
 data.tree
 diagram
