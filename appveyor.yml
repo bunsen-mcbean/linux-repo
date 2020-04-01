@@ -28,6 +28,9 @@ build_script:
   - mkdir -p $SNAPSHOT
   - python3 download.py --packages drat `sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g' packages.txt`
   - flatpak run --devel org.jamovi.jamovi -R CMD INSTALL --build *.tar.gz --library=$R_LIBS_USER
+  - rename 's/^(.*)_R_x86_64-pc-linux-gnu\.tar\.gz$/$1.tar.gz.tmp/' *_R_x86_64-pc-linux-gnu.tar.gz
+  - rm -rf *.tar.gz
+  - rename 's/^(.*)\.tmp/$1/' *.tar.gz.tmp
   - flatpak run --devel org.jamovi.jamovi -R -e "options(dratRepo='$APPVEYOR_BUILD_FOLDER/$SNAPSHOT'); lapply(list.files(pattern='R_x86_64-pc-linux-gnu\\\\.tar\\\\.gz$'), drat::insertPackage); invisible(NULL)"
 
 after_build:
