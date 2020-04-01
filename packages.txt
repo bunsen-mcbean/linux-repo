@@ -8,10 +8,13 @@ diagram
 dplyr
 emmeans
 evaluate
+freetypeharfbuzz
+git2r
 ggeffects
 ggplot2
 ggridges
 ggstance
+httpuv
 jmvcore
 jsonlite
 knitr
