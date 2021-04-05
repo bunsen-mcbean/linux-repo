@@ -11,7 +11,7 @@ environment:
     SFTP_USER:
         secure: l4mG8sI6N3F1niJ6euSU3A==
     SFTP_KNOWNHOSTS:
-        secure: J4PhvJkySks9v0kRrhCHJYaFZcEbNq1X1v0aDwrsACvDP7BK6MPUr37A7hjW2iuMgv9X2yYEcnm4u07E1X4fICr6mEH5xZhUuYsTf3jGYEPap3yk4VYz8mKPMemL/zmDNXigdgX/eswuvkibX7jcrtTYTGqWCrZU+aQY61Ic8W3H94C2m6R1dIr/q4yqYOiBFD406x2x7DRZUJlCz4Op2G9b8wFEzB/mODK4rs2FPGcQBDI8cYBfjkF94HFFIemS70VPvFjQ8vxyK/sOiqGUO+PLC/vHKBrwwjtAJ5BKGA+DsOr/fNUuwWArvGbT+Meb
+        secure: lh92moYKHXQ95RjX3Un1+7X15QjgH/2WgdDGC/mmif+2a+f8Hp63WhlbIqYsqT7QIM67Pn9WTjkbtHa4TUh8boSkkO0tQsPnf19UazBtwdopKV5Bn5DvGUwwtoL7UCG1c+1nQaErriwHy/UAkJ7M4RcZyM5gA/2fmp4D1535N5+0TlVy8pNusr/X/KIpujcv4BT5gQ8XovsV01b55mijNCg3ZfDPuki+Yjy2DuBt5J5mtOHjnoveM/1uxJ3ud9cnmftuYhp4ueRs17sc5kNBMxEbOxloQ3tZYMPVXk9g22PHUr5wbWa4XbYmw2ZfzjDi1Zl62f2Fhkp/NUrM1byo2/fU7PCTc25qMjxL7jhIe7o=
 
 install:
   - sudo add-apt-repository ppa:alexlarsson/flatpak
