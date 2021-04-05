@@ -24,7 +24,6 @@ lazyeval
 lme4
 lmerTest
 magrittr
-metaBMA
 nnet
 png
 purrr
