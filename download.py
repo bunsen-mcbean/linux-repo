@@ -9,6 +9,7 @@ import urllib.request
 from collections import OrderedDict
 import re
 from toposort import toposort_flatten as topo_sort
+from distutils.version import LooseVersion as Version
 
 
 parser = argparse.ArgumentParser()
@@ -86,8 +87,10 @@ def download_cran_dir():
             if 'LinkingTo' in kvs:
                 link = re_pkg_name.findall(kvs['LinkingTo'])
                 deps.extend(link)
-
-            cran_packages[name] = { 'name': name, 'version': version, 'deps': set(deps) }
+            
+            existing = cran_packages.get(name)
+            if not existing or (Version(existing['version']) < Version(version)):
+                cran_packages[name] = { 'name': name, 'version': version, 'deps': set(deps) }
 
 def get_cran_url(name: str) -> str:
     global cran_packages
