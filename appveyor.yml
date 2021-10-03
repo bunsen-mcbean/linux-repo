@@ -1,5 +1,5 @@
 
-image: Ubuntu
+image: Ubuntu2004
 
 environment:
     APPVEYOR_CONSOLE_DISABLE_PTY: true
@@ -14,7 +14,6 @@ environment:
         secure: J4PhvJkySks9v0kRrhCHJYaFZcEbNq1X1v0aDwrsACvDP7BK6MPUr37A7hjW2iuMgv9X2yYEcnm4u07E1X4fICr6mEH5xZhUuYsTf3jGYEPap3yk4VYz8mKPMemL/zmDNXigdgX/eswuvkibX7jcrgsZvmCFz1uWqW4OG3eS3JyjRJ46ZlUjtrmXVAUF8G74sBuG8WiIkW2G5p+DRWRuiTjHzNoO4P+1iYppN2ZrkyQs5qpy1CysW6D52z/n17TTSqyOiuRYAXlecvr4b8v4rKHZoyZmOEggopx74cRz+4rvy9xBh3rkYKy5vGl6PxSJrbA7V3+MnSs9+wuWE8dctjxv24S9CGl7n/gkLnQpuyVmDq2JuClEfeLlvdDH+PVXAtRG61x4xiP17yG9Ldoh2ghYNlBhfN6QcIm2h8wzMq2gANjjBbf0N8mz4D2VjkLvi+oYyz0ijney+XAWRDSRjyYUg+u0NDbcFWXP9QgIXaM=
 
 install:
-  - sudo add-apt-repository ppa:alexlarsson/flatpak
   - sudo apt update
   - sudo apt install -y flatpak python3.7 python3-pip rename
   
