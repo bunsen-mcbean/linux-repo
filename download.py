@@ -72,8 +72,8 @@ def download_cran_dir():
             kvs = re_key_value.findall(pkg)
             kvs = dict(kvs)
             
-            print(pkg)
-            print(kvs)
+            if not kvs:
+                continue
 
             name = kvs['Package']
             version = kvs['Version']
