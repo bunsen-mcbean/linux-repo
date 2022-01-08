@@ -57,7 +57,7 @@ cran_packages = OrderedDict()
 
 def download_cran_dir():
     global cran_packages
-    url = 'https://cran.microsoft.com/snapshot/2021-04-01/src/contrib/PACKAGES'
+    url = 'https://cran.microsoft.com/snapshot/2022-01-01/src/contrib/PACKAGES'
     print('Downloading CRAN directory')
     re_line_fixer = re.compile('(\n +)', re.MULTILINE)
     re_key_value = re.compile('^([A-Za-z0-9]+):\s*(.+)$', re.MULTILINE)
@@ -97,7 +97,7 @@ def get_cran_url(name: str) -> str:
     if name not in cran_packages:
         raise Exception('Package {} does not exist in CRAN', name)
     version = cran_packages[name]['version']
-    return 'https://cran.microsoft.com/snapshot/2021-04-01/src/contrib/{}_{}.tar.gz'.format(name, version)
+    return 'https://cran.microsoft.com/snapshot/2022-01-01/src/contrib/{}_{}.tar.gz'.format(name, version)
 
 
 def get_package_deps(name: str):
@@ -139,11 +139,16 @@ def main():
         filename = os.path.basename(url)
         local_path = '{n:03}_{filename}'.format(filename=filename, n=pkg_no)
 
-        print('Downloading', name)
-        with urllib.request.urlopen(url) as response:
-            body = response.read()
-            with open(local_path, 'wb') as output:
-                output.write(body)
+        while True:
+            print('Downloading', name)
+            try:
+                with urllib.request.urlopen(url) as response:
+                    body = response.read()
+                    with open(local_path, 'wb') as output:
+                        output.write(body)
+                break
+            except Exception:
+                pass
 
         pkg_no += 1
 
