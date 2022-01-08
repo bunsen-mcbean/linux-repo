@@ -9,7 +9,6 @@ diagram
 dplyr
 emmeans
 evaluate
-freetypeharfbuzz
 git2r
 ggeffects
 ggplot2
