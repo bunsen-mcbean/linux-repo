@@ -71,6 +71,9 @@ def download_cran_dir():
             pkg = re_line_fixer.sub(' ', pkg)
             kvs = re_key_value.findall(pkg)
             kvs = dict(kvs)
+            
+            print(pkg)
+            print(kvs)
 
             name = kvs['Package']
             version = kvs['Version']
