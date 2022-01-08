@@ -1,6 +1,6 @@
 #!/bin/bash
 
-flatpak remote-add --user -y --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 # curl -O https://flathub.org/repo/flathub.flatpakrepo
 # sudo flatpak remote-add --from flathub flathub.flatpakrepo
 
