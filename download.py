@@ -57,7 +57,7 @@ cran_packages = OrderedDict()
 
 def download_cran_dir():
     global cran_packages
-    url = 'https://cran.microsoft.com/snapshot/2022-01-01/src/contrib/PACKAGES'
+    url = 'https://packagemanager.rstudio.com/all/2021-12-29+Y3JhbiwyOjQ1MjYyMTU7NTA1NEIwRDA/src/contrib/PACKAGES'
     print('Downloading CRAN directory')
     re_line_fixer = re.compile('(\n +)', re.MULTILINE)
     re_key_value = re.compile('^([A-Za-z0-9]+):\s*(.+)$', re.MULTILINE)
@@ -97,7 +97,7 @@ def get_cran_url(name: str) -> str:
     if name not in cran_packages:
         raise Exception('Package {} does not exist in CRAN', name)
     version = cran_packages[name]['version']
-    return 'https://cran.microsoft.com/snapshot/2022-01-01/src/contrib/{}_{}.tar.gz'.format(name, version)
+    return 'https://packagemanager.rstudio.com/all/2021-12-29+Y3JhbiwyOjQ1MjYyMTU7NTA1NEIwRDA/src/contrib/{}_{}.tar.gz'.format(name, version)
 
 
 def get_package_deps(name: str):
