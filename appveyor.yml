@@ -23,15 +23,16 @@ install:
 
 build_script:
   - export R_VERSION=`flatpak run org.jamovi.jamovi --r-version`
-  - mkdir -p $R_LIBS_USER
-  - python3 download.py --packages drat `sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g' packages.txt`
-  - flatpak run --devel org.jamovi.jamovi -R CMD INSTALL --build *.tar.gz --library=$R_LIBS_USER
-  - rename 's/^(.*)_R_x86_64-pc-linux-gnu\.tar\.gz$/$1.tar.gz.tmp/' *_R_x86_64-pc-linux-gnu.tar.gz
-  - rm -rf *.tar.gz
-  - rename 's/^(.*)\.tmp/$1/' *.tar.gz.tmp
   - mkdir -p $R_VERSION
-  - mkdir -p $R_VERSION/$SNAPSHOT
-  - flatpak run --devel org.jamovi.jamovi -R -e "options(dratRepo='$APPVEYOR_BUILD_FOLDER/$R_VERSION/$SNAPSHOT'); lapply(list.files(pattern='\\\\.tar\\\\.gz$'), drat::insertPackage); invisible(NULL)"
+  - echo fred >$R_VERSION/fred
+#   - mkdir -p $R_LIBS_USER
+#   - python3 download.py --packages drat `sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g' packages.txt`
+#   - flatpak run --devel org.jamovi.jamovi -R CMD INSTALL --build *.tar.gz --library=$R_LIBS_USER
+#   - rename 's/^(.*)_R_x86_64-pc-linux-gnu\.tar\.gz$/$1.tar.gz.tmp/' *_R_x86_64-pc-linux-gnu.tar.gz
+#   - rm -rf *.tar.gz
+#   - rename 's/^(.*)\.tmp/$1/' *.tar.gz.tmp
+#   - mkdir -p $R_VERSION/$SNAPSHOT
+#   - flatpak run --devel org.jamovi.jamovi -R -e "options(dratRepo='$APPVEYOR_BUILD_FOLDER/$R_VERSION/$SNAPSHOT'); lapply(list.files(pattern='\\\\.tar\\\\.gz$'), drat::insertPackage); invisible(NULL)"
 
 after_build:
   - mkdir -p ~/.ssh
@@ -39,7 +40,7 @@ after_build:
   - echo "${SFTP_KEY}" | base64 --decode >~/.ssh/id_rsa
   - chmod 0600 ~/.ssh/id_rsa
   - echo "${SFTP_KNOWNHOSTS}" | base64 --decode >>~/.ssh/known_hosts
-  - scp -r -o IdentityFile=~/.ssh/id_rsa "$APPVEYOR_BUILD_FOLDER/$R_VERSION" ${SFTP_USER}@jamovi.org:/home/${SFTP_USER}/jamovi.org/downloads/repo
+  - scp -v -r -o IdentityFile=~/.ssh/id_rsa "$APPVEYOR_BUILD_FOLDER/$R_VERSION" ${SFTP_USER}@jamovi.org:/home/${SFTP_USER}/jamovi.org/downloads/repo
 
 cache:
   - /home/appveyor/.local/share/flatpak/app/org.jamovi.jamovi -> install-flatpak.sh
