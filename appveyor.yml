@@ -40,7 +40,7 @@ after_build:
   - echo "${SFTP_KEY}" | base64 --decode >~/.ssh/id_rsa
   - chmod 0600 ~/.ssh/id_rsa
   - echo "${SFTP_KNOWNHOSTS}" | base64 --decode >>~/.ssh/known_hosts
-  - scp -v -r -o IdentityFile=~/.ssh/id_rsa "$APPVEYOR_BUILD_FOLDER/$R_VERSION" ${SFTP_USER}@jamovi.org:/home/${SFTP_USER}/jamovi.org/downloads/repo
+  - scp -v -r -o StrictHostKeyChecking=no -o IdentityFile=~/.ssh/id_rsa "$APPVEYOR_BUILD_FOLDER/$R_VERSION" ${SFTP_USER}@jamovi.org:/home/${SFTP_USER}/jamovi.org/downloads/repo
 
 cache:
   - /home/appveyor/.local/share/flatpak/app/org.jamovi.jamovi -> install-flatpak.sh
